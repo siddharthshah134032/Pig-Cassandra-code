@@ -1,0 +1,34 @@
+CREATE TABLE review(
+review_id text,
+user_id text,
+business_id text,
+stars double,
+PRIMARY KEY(user_id,stars,business_id)
+)
+WITH CLUSTERING ORDER BY(stars DESC);
+
+CREATE INDEX ON review(stars);
+
+COPY review(review_id,user_id,business_id,stars)
+FROM '/home/004/s/sx/sxs134032/review.csv'
+WITH DELIMITER='^';
+
+SELECT * FROM review where stars=4.0 LIMIT 10;
+
+ user_id                | stars | business_id            | review_id
+------------------------+-------+------------------------+----------------------                                                                                        --
+ C_y5U0NiPcVh3qVgQJi9yg |     4 | AMaIutqEKCzGhmN9DcIuIw | _HnyoXKPMAdK2l-J0gU8S                                                                                        g
+ h84fo_lx55tnwMxHxrNwdQ |     4 | 1c4j2NhUZsfA0gt6B6_cBA | 0Vrtvj3T8s5p24Xrfe6E9                                                                                        w
+ y6O493_TsQoPwu7HwDZPvg |     4 | U3RwirEkQUWSc6ir0Y5PeQ | ToonYEYvyIKWcOVUvCzKe                                                                                        Q
+ qFBuLIovJGl2nUdOwDQ6DA |     4 | KKB3Z3bLDTNY2hBFzuRNEg | aF1JMUChNw1DVeyA34yGY                                                                                        A
+ _L13TUd936Zk3SpOlu8bCA |     4 | Q1ty4a5uO7rPlPoSH6PK2w | 1pADgRoYSaI6-SustjXOq                                                                                        g
+ h42NleN0epXGVghfoccSag |     4 | fSFb98pIz-FQochhvsKioA | LA9j1xzIA5D1iTXAhPggG                                                                                        Q
+ h42NleN0epXGVghfoccSag |     4 | uv7n9Af48hRVlpLNojvi7g | V1RKcHgbjD4YMfkzzJlQD                                                                                        w
+ 4ZkMG3n4dTbt7TJ4eRZk1g |     4 | eZ6dhl4xB9xJOzfB62ChKw | ME-DwfChHy1sDg3Eokn9k                                                                                        g
+ WmH2Xo0EUfrzgPwHFOQRVA |     4 | 4GYc1Ld8r4rGQJKz_Qp07A | MtnNs-0cP84ytlJY10_BQ                                                                                        A
+ yir0cnMcolG30GWx8y_ROQ |     4 | qHmamQPCAKkia9X0uryA8g | qwhnlP1dsA-AQaWKdNYa3                                                                                        w
+
+
+TRUNCATE review;
+
+DROP TABLE review;

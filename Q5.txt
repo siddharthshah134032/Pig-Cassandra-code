@@ -1,0 +1,18 @@
+CREATE KEYSPACE sxs134032 WITH REPLICATION ={'class': 'SimpleStrategy', 'replication_factor':1};
+
+CREATE TABLE business(
+business_id varchar,
+full_address varchar,
+categories varchar,
+PRIMARY KEY(business_id));
+
+COPY business(business_id,full_address,categories)
+FROM '/home/004/s/sx/sxs134032/business.csv'
+WITH DELIMITER='^';
+
+SELECT * FROM business WHERE business_id='HPWmjuivv3xJ279qSVfNaQ';
+O/P:- HPWmjuivv3xJ279qSVfNaQ | List(Music & DVDs, Books, Mags, Music and Video, Shopping) | 325 W State StWest Lafayette, IN 47906
+
+TRUNCATE business;
+
+DROP TABLE business;
